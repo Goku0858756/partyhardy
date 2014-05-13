@@ -1,4 +1,4 @@
-package com.fokstudios.partyhardyapp;
+package com.fok.partyhardy;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
