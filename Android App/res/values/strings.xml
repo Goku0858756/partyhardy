@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PartyHardy</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Party Hardy</string>
     <string name="action_settings">Settings</string>
+    
+    <!-- Colors -->
+    <color name="clrBlack">#000000</color>
+    
+    <!-- Button Labels -->
+    <string name="btnLblNext">next</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cntDescBackground">Background</string>
 
 </resources>
