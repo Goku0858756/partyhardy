@@ -6,6 +6,8 @@
     
     <!-- Colors -->
     <color name="clrBlack">#000000</color>
+    <color name="clrGray">#C0C0C0</color>
+    <color name="clrWhite">#FFFFFF</color>
     
     <!-- Button Labels -->
     <string name="btnLblNext">next</string>
