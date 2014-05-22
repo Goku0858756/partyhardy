@@ -11,8 +11,9 @@
     
     <!-- Button Labels -->
     <string name="btnLblNext">next</string>
-    <string name="btnLblHost">Host</string>
-    <string name="btnLblClient">Client</string>
+    <string name="btnLblSend">send</string>
+    <string name="btnLblHost">host</string>
+    <string name="btnLblClient">client</string>
     
     <!-- Content Descriptions -->
     <string name="cntDescBackground">Background</string>

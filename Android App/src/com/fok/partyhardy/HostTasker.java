@@ -2,29 +2,35 @@ package com.fok.partyhardy;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-
 import com.sirolf2009.networking.Client;
 import com.sirolf2009.networking.Connector;
-import com.sirolf2009.networking.ICommunicator;
 import com.sirolf2009.networking.IHost;
 
-import android.os.AsyncTask;
+import android.util.Log;
 
-public class HostTasker extends AsyncTask<String, Void, String> implements IHost {
+public class HostTasker implements IHost, Runnable {
+
 
 	private ServerSocket socket;
 	private Connector connector;
 	
 	@Override
-	protected String doInBackground(String... params) {
+	public void run() {
+		startHosting();
+	}
+	
+	protected void startHosting() {
 		try {
+			Log.i("PartyHardyHost", "initializing");
 			connector = new Connector(this);
+			Log.i("PartyHardyHost", "starting hosting");
 			socket = new ServerSocket(6000);
+			Log.i("PartyHardyHost", "hosting on "+socket);
 			new Thread(connector).start();
 		} catch (IOException e) {
 			e.printStackTrace();
+			Log.e("PartyHardyHost", e.getMessage());
 		}
-		return socket.toString();
 	}
 
 	@Override
@@ -54,6 +60,6 @@ public class HostTasker extends AsyncTask<String, Void, String> implements IHost
 
 	@Override
 	public void onClientConnect(Client client) {
+		connector.disconnect();
 	}
-
 }

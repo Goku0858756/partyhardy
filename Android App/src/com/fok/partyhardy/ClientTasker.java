@@ -3,30 +3,41 @@ package com.fok.partyhardy;
 import java.io.IOException;
 import java.net.Socket;
 
+import android.util.Log;
+
 import com.sirolf2009.networking.Connector;
 import com.sirolf2009.networking.IClient;
 import com.sirolf2009.networking.Receiver;
 import com.sirolf2009.networking.Sender;
 
-import android.os.AsyncTask;
-
-public class ClientTasker extends AsyncTask<String, Void, String> implements IClient {
+public class ClientTasker implements IClient, Runnable {
 
 	private Sender sender;
 	private Receiver receiver;
 	private Socket socket;
 	private Connector connector;
-	
+	private String ip;
+
+	public ClientTasker(String ip) {
+		this.ip = ip;
+	}
+
 	@Override
-	protected String doInBackground(String... params) {
+	public void run() {
 		try {
 			connector = new Connector(this);
-			socket = new Socket("145.24.200.53", 6000);
+			Log.i("PartyHardyClient", "connecting client -> host");
+			socket = new Socket(ip, 6000);
+			Log.i("PartyHardyClient", "connected "+socket);
 			new Thread(connector).start();
+			Log.i("PartyHardyClient", "connector started");
+			while(sender == null) {}
+			Log.i("PartyHardyClient", "connector initialized, sending packet");
+			sender.send(new PacketHelloWorld("HEYAAA! :D"));
+			Log.i("PartyHardyClient", "packet send");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return socket.toString();
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.SocketException;
 
+import android.util.Log;
+
 public class Receiver implements Runnable {
 
 	BufferedReader in;
@@ -40,6 +42,7 @@ public class Receiver implements Runnable {
 				} else {
 					Packet packet = (Packet) Packet.packetsIDtoPacket.get(packetID).newInstance();
 					packet.receive(in);
+					Log.d("PartyHardy", communicator+" "+communicator.isRemote());
 					if(!communicator.isRemote()) {
 						packet.receivedOnClient(communicator);
 					} else {
