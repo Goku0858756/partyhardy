@@ -17,7 +17,7 @@ public class Connector implements Runnable {
 	}
 
 	@Override
-	public void run() {
+	public synchronized void run() {
 		if(isAlive) {
 			if(communicator.isRemote()) {
 				Log.i("PartyHardyHost", "listening for connections");
@@ -33,13 +33,11 @@ public class Connector implements Runnable {
 					}
 				}
 			} else {
-				Log.i("PartyHardyClient", "initializing");
 				IClient client = (IClient) communicator;
 				client.setSender(new Sender((Socket) communicator.getSocket()));
 				client.setReceiver(new Receiver(communicator));
 				new Thread(client.getSender()).start();
 				new Thread(client.getReceiver()).start();
-				Log.i("PartyHardyClient", "initialized");
 			}
 		}
 	}

@@ -1,10 +1,10 @@
-package com.fok.partyhardy;
+package com.fok.partyhardy.client;
 
 import java.io.IOException;
 import java.net.Socket;
 
 import android.util.Log;
-
+import com.fok.partyhardy.Friend;
 import com.sirolf2009.networking.Connector;
 import com.sirolf2009.networking.IClient;
 import com.sirolf2009.networking.Receiver;
@@ -17,9 +17,11 @@ public class ClientTasker implements IClient, Runnable {
 	private Socket socket;
 	private Connector connector;
 	private String ip;
+	private Friend friend;
 
-	public ClientTasker(String ip) {
+	public ClientTasker(String ip, Friend friend) {
 		this.ip = ip;
+		this.friend = friend;
 	}
 
 	@Override
@@ -31,12 +33,9 @@ public class ClientTasker implements IClient, Runnable {
 			Log.i("PartyHardyClient", "connected "+socket);
 			new Thread(connector).start();
 			Log.i("PartyHardyClient", "connector started");
-			while(sender == null) {}
-			Log.i("PartyHardyClient", "connector initialized, sending packet");
-			sender.send(new PacketHelloWorld("HEYAAA! :D"));
-			Log.i("PartyHardyClient", "packet send");
+			friend.setHasConnection(true);
 		} catch (IOException e) {
-			e.printStackTrace();
+			friend.setHasConnection(false);
 		}
 	}
 

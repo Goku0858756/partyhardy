@@ -32,27 +32,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fok.partyhardy.HostActivity"
+            android:name="com.fok.partyhardy.host.HostActivity"
             android:label="host"
     		android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.fok.partyhardy.ClientActivity"
+            android:name="com.fok.partyhardy.client.ClientActivity"
             android:label="client"
     		android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
-        <service android:name="HostTasker" 
-            android:exported="false"
-            android:process=":hoster"/>
+        <service android:enabled="true" android:name=".ServiceNetwork" />
     </application>
 
 </manifest>

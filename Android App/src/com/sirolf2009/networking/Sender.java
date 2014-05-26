@@ -38,7 +38,6 @@ public class Sender implements Runnable {
 
 	private synchronized void sendToClient() {
 		for(Packet packet : queue) {
-			System.out.println("sending " + packet);
 			packet.send(out);
 			out.flush();
 		}
